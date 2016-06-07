@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/backgraond"
+    tools:context="com.menachi.zerphonefinall.AddStudentActivity">
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:weightSum="1"
+        android:id="@+id/linearLayout">
+
+        <ImageView
+            android:layout_width="93dp"
+            android:layout_height="70dp"
+            android:id="@+id/student_list_row_image"
+            android:src="@drawable/android"
+            android:layout_gravity="center"
+            android:layout_weight="0.11" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_gravity="center"
+                android:text="Title: "
+                android:id="@+id/item_list_row_title_label" />
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="35dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:hint="Product title"
+                android:textAlignment="center"
+                android:background="@drawable/login_text_box"
+                android:textColor="#ffffff"
+                android:id="@+id/item_list_row_edit_title"
+                android:textColorHint="#ffffff" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_gravity="center"
+                android:text="Price: "
+                android:id="@+id/item_list_row_label_price" />
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="35dp"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:hint="price"
+                android:background="@drawable/login_text_box"
+                android:textColor="#ffffff"
+                android:id="@+id/item_list_row_edit_price"
+                android:textColorHint="#ffffff" />
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_gravity="center"
+                android:text="Category: "
+                android:id="@+id/item_list_row_label_category" />
+            <Spinner
+                android:layout_width="fill_parent"
+                android:layout_height="35dp"
+                android:background="@drawable/login_text_box"
+                android:id="@+id/item_list_row_edit_category"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_gravity="center"
+                android:text="Details: "
+                android:id="@+id/item_list_row_label_details" />
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="35dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:hint="details"
+                android:textAlignment="center"
+                android:background="@drawable/login_text_box"
+                android:textColor="#ffffff"
+                android:id="@+id/item_list_row_edit_details"
+                android:textColorHint="#ffffff" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+
+</FrameLayout>

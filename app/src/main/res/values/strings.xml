@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">ZerPhoneFinall</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_section1">Single Flower</string>
+    <string name="title_section2">Vase</string>
+    <string name="title_section3">Gift</string>
+    <string name="title_section4">Planet</string>
+    <string name="dialog_add_item">Add new item</string>
+    <string name="dialog_edit_item">Edit item</string>
+    <string name="ok">ok</string>
+    <string name="cancel">cancel</string>
+    <string name="string_enter_email">Enter Email</string>
+    <string name="string_choose_password">Choose password</string>
+    <string name="button_register">Register</string>
+    <string name="string_already_registered">Already Registered?</string>
+    <string name="button_login">Login</string>
+    <string name="login_error_title">Error!</string>
+    <string name="login_error_message">Please make sure you enter an email address and password!</string>
+    <string name="string_email">Email</string>
+    <string name="textview_password">Password</string>
+    <string name="string_user_login">Login</string>
+    <string name="signup_error_message">Please make sure you enter an email address and password!</string>
+    <string name="signup_error_title">Error!</string>
+    <string name="signup_success">Account successfully created! You can now Login.</string>
+    <string name="login_button_label">Login</string>
+    <string name="button_map">Go to MAPS</string>
+
+    <string name="title_activity_detail">DetailActivity</string>
+    <string name="error_finding_store">Error finding store location on the map</string>
+    <string name="zerphone_store">ZerPhone Store</string>
+    <string name="error_connect_to_services">Can\'t connect to Google Play services</string>
+    <string name="error_find_store">"Can't find Store"</string>
+    <string name="locality_dummy">Locality</string>
+    <string name="snippet_dummy">Snippet</string>
+
+    <string-array name="categories">
+        <item>Single flower</item>
+        <item>Vase</item>
+        <item>Planet</item>
+        <item>Bucket</item>
+    </string-array>
+</resources>
