@@ -33,6 +33,8 @@ import com.colman.zerphonefinall.Model.Model;
 import java.util.LinkedList;
 import java.util.List;
 
+
+// First Activity we Loged in to application
 public class MainActivity extends ActionBarActivity implements ActionBar.TabListener {
 
     static Context context;
