@@ -12,11 +12,11 @@ import com.colman.zerphonefinall.Model.Store;
 
 import java.util.List;
 
-public class HotelAdapter extends ArrayAdapter<Store> {
+public class StoreAdapter extends ArrayAdapter<Store> {
 
     private List<Store> stores;
 
-    public HotelAdapter(Context context, int resource, List<Store> objects) {
+    public StoreAdapter(Context context, int resource, List<Store> objects) {
         super(context, resource, objects);
         stores = objects;
     }

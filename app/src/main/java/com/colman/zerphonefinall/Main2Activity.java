@@ -24,7 +24,7 @@ public class Main2Activity extends AppCompatActivity {
 
         ListView listView = (ListView) findViewById(android.R.id.list);
         ArrayAdapter<Store> adapter =
-                new HotelAdapter(this, R.layout.list_item_location, stores);
+                new StoreAdapter(this, R.layout.list_item_location, stores);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
