@@ -39,4 +39,6 @@
         <item>Planet</item>
         <item>Bucket</item>
     </string-array>
+    <string name="title_activity_add_item">addItemActivity</string>
+    <string name="title_activity_add_edit_item">addEditItem</string>
 </resources>

@@ -15,4 +15,12 @@
         android:title="addNewItem"
         android:visible="true">
     </item>
+
+    <item
+        android:id="@+id/maps"
+        android:icon="@drawable/mapsicon"
+        app:showAsAction="always"
+        android:title="addNewItem"
+        android:visible="true">
+    </item>
 </menu>

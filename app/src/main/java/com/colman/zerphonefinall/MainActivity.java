@@ -41,15 +41,42 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     SectionsPagerAdapter sectionsPagerAdapter;
     int page;
     ViewPager viewPager;
+    String id;
 
     public static Context getAppContext() {
         return context;
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        context = getApplicationContext();
+
+        final ActionBar actionBar = getSupportActionBar();
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+
+        sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+
+        viewPager = (ViewPager) findViewById(R.id.pager);
+        viewPager.setAdapter(sectionsPagerAdapter);
+
+        viewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+            @Override
+            public void onPageSelected(int position) {
+                actionBar.setSelectedNavigationItem(position);
+            }
+        });
+
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intent = getIntent();
+        id = intent.getStringExtra("LoggedInEmail");
 
         context = getApplicationContext();
 
@@ -75,6 +102,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                     .setTabListener(this));
         }
     }
+
+
 
     private void showAddEditDialog(final Item item, final int position){
         DialogFragment df = new DialogFragment(){
@@ -144,6 +173,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                             String category = dropDown.getSelectedItem().toString();
                             Model.getInstance(position).update(item, title, price, details, category);
                         }
+                        onResume();
                     }
                 });
                 builder.setNegativeButton("cancel",null);
@@ -164,7 +194,13 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         MenuItem item = menu.findItem(R.id.addNewItem);
+        MenuItem maps = menu.findItem(R.id.maps);
         item.setIcon(R.drawable.business_users_add);
+        maps.setIcon(R.drawable.mapsicon);
+        if (id.equals("admin@admin.com")){
+            item.setVisible(true);
+        }
+        else item.setVisible(false);
         return true;
     }
 
@@ -172,7 +208,17 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.addNewItem: {
-                showAddEditDialog(null,0);
+                //showAddEditDialog(null,0);
+                Intent myIntent = new Intent(MainActivity.this, addEditItem.class);
+                myIntent.putExtra("key", ""); //Optional parameters
+                myIntent.putExtra("id",id);
+                MainActivity.this.startActivity(myIntent);
+                break;
+            }
+            case R.id.maps: {
+                Intent intent = new Intent(MainActivity.this, Main2Activity.class);
+                startActivity(intent);
+                break;
             }
             default:break;
         }
@@ -231,14 +277,14 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
     public class PlaceholderFragment extends Fragment {
 
-        int position;
+        int positionTab;
         List<Item> data = new LinkedList<Item>();
         ProgressBar progressBar;
         final MyAdapter adapter = new MyAdapter(MainActivity.this.getApplicationContext());
 
 
         public PlaceholderFragment(int i) {
-            this.position = i;
+            this.positionTab = i;
         }
 
         @Override
@@ -250,28 +296,37 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
             gridView.setAdapter(adapter);
             loadItemsData();
-            gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Item item = data.get(position);
-                    editItem(item, position);
-                }
-            });
-            gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-                @Override
-                public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                    Item item = data.get(position);
-                    Model.remove(item);
-                    loadItemsData();
-                    return true;
-                }
-            });
+
+
+            if (id.equals("admin@admin.com")) {
+                gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Item item = data.get(position);
+                        //editItem(item, position);
+                        Intent myIntent = new Intent(MainActivity.this, addEditItem.class);
+                        myIntent.putExtra("key", item.getKey()); //Optional parameters
+                        myIntent.putExtra("positionTab",positionTab);
+                        myIntent.putExtra("position",position);
+                        MainActivity.this.startActivity(myIntent);
+                    }
+                });
+                gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                    @Override
+                    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                        Item item = data.get(position);
+                        Model.remove(item);
+                        loadItemsData();
+                        return true;
+                    }
+                });
+            }
             return view;
         }
 
         private void loadItemsData() {
             progressBar.setVisibility(View.VISIBLE);
-            Model.getInstance(position).getAllItemsASynch(position, new Model.getItemListener() {
+            Model.getInstance(positionTab).getAllItemsASynch(positionTab, new Model.getItemListener() {
                 @Override
                 public void onResult(List<Item> items) {
                     data = items;

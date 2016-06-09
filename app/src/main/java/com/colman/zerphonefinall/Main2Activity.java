@@ -22,6 +22,8 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
+
+
         ListView listView = (ListView) findViewById(android.R.id.list);
         ArrayAdapter<Store> adapter =
                 new StoreAdapter(this, R.layout.list_item_location, stores);

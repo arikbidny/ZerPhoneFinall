@@ -31,17 +31,10 @@ public class SignUpActivity extends ActionBarActivity {
         password = (EditText)findViewById(R.id.editTextPassword);
         login = (Button)findViewById(R.id.buttonLogin);
         signup = (Button)findViewById(R.id.buttonRegister);
-        map = (Button)findViewById(R.id.buttonMap);
 
         final Firebase ref = new Firebase(Constants.FIREBASE_URL);
 
-        map.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SignUpActivity.this, Main2Activity.class);
-                startActivity(intent);
-            }
-        });
+
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override

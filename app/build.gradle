@@ -10,6 +10,11 @@ android {
         targetSdkVersion 19
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
+    }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
     }
     buildTypes {
         release {
@@ -28,9 +33,8 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:19.1.0'
-    compile 'com.firebase:firebase-client-android:2.3.1+'
-    compile 'com.google.android.gms:play-services:9.0.0'
-    compile files('libs/cloudinary-core-1.2.2.jar')
-    compile files('libs/cloudinary-android-1.2.2.jar')
+    compile 'com.android.support:appcompat-v7:23.0.0'
+    compile 'com.firebase:firebase-client-android:2.3.1'
+    compile 'com.google.android.gms:play-services:9.0.2'
+    compile 'com.android.support:design:23.4.0'
 }

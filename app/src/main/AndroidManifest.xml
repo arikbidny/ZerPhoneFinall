@@ -25,14 +25,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".LoginActivity" />
-
-
-
-        <activity android:name=".Main2Activity"
-                  android:label="ZerPhone Stores"
-            />
-        <activity android:name=".DetailActivity"
-                    android:label="DetailActivity"
+        <activity
+            android:name=".Main2Activity"
+            android:label="ZerPhone Stores" />
+        <activity
+            android:name=".DetailActivity"
+            android:label="DetailActivity"
             android:parentActivityName=".Main2Activity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -46,6 +44,11 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
+
+        <activity
+            android:name=".addEditItem"
+            android:label="@string/title_activity_add_edit_item"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
