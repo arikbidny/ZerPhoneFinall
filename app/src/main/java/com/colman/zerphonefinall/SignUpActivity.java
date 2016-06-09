@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.colman.zerphonefinall.Model.Constants;
 import com.firebase.client.Firebase;
@@ -18,9 +19,8 @@ public class SignUpActivity extends ActionBarActivity {
 
     protected EditText email;
     protected EditText password;
-    protected Button login;
+    protected TextView login;
     protected Button signup;
-    protected Button map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +29,7 @@ public class SignUpActivity extends ActionBarActivity {
 
         email = (EditText)findViewById(R.id.editTextEmail);
         password = (EditText)findViewById(R.id.editTextPassword);
-        login = (Button)findViewById(R.id.buttonLogin);
+        login = (TextView) findViewById(R.id.buttonLogin);
         signup = (Button)findViewById(R.id.buttonRegister);
 
         final Firebase ref = new Firebase(Constants.FIREBASE_URL);
