@@ -25,6 +25,9 @@ public class LoginActivity extends ActionBarActivity {
     private Button login;
     private TextView signup;
 
+    // usernameedt
+    //passwordedt
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

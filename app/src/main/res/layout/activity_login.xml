@@ -4,61 +4,163 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#38b2e4"
+    android:weightSum="10"
     tools:context="com.colman.zerphonefinall.LoginActivity">
 
-    <ImageView android:src="@drawable/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="72dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="50dp"
-        android:layout_gravity="center_horizontal" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp">
 
+    </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/string_email"
-        />
-
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/et_login_email"
-        android:hint="Email" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/textview_password" />
-
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:id="@+id/et_login_password"
-        android:hint="Password" />
-
-    <Button
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="10dp"
-        android:text="@string/string_user_login"
-        android:id="@+id/btn_login_login"
-        android:background="@drawable/login_button"
-        android:layout_gravity="center_horizontal"
-        android:typeface="serif"
-        />
-
-    <TextView android:id="@+id/tv_login_signup"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:text="No account yet? Create one"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_weight="1.5"
         android:gravity="center"
-        android:textSize="16dip"/>
+        android:layout_height="0dp">
+
+        <TextView
+            android:id="@+id/logo"
+            android:layout_width="match_parent"
+            android:text="ZerPhone"
+            android:textSize="@dimen/h4"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:layout_height="0dp">
+
+        <TextView
+            android:id="@+id/signinhint"
+            android:layout_width="match_parent"
+            android:text="Sign in to your ZerPhone account"
+            android:textSize="@dimen/p"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="10"
+        android:layout_height="0dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="6.5"
+            android:orientation="vertical"
+            android:weightSum="10"
+            android:background="@drawable/whiterounded"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/et_login_email"
+                android:layout_width="match_parent"
+                android:layout_weight="5"
+                android:background="@null"
+                android:hint="Email"
+                android:textColor="#ffffff"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textColorHint="#80ffffff"
+                android:layout_height="0dp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#ffffff"
+                />
+
+            <EditText
+                android:id="@+id/et_login_password"
+                android:layout_width="match_parent"
+                android:layout_weight="5"
+                android:hint="Password"
+                android:paddingLeft="10dp"
+                android:textColor="#ffffff"
+                android:paddingRight="10dp"
+                android:textColorHint="#80ffffff"
+                android:background="@null"
+                android:layout_height="0dp" />
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:layout_height="0dp">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="10"
+        android:layout_height="0dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="6.5"
+            android:orientation="vertical"
+            android:weightSum="10"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/btn_login_login"
+                android:layout_width="match_parent"
+                android:text="Login"
+                android:textSize="@dimen/h4"
+                android:background="@drawable/roundedbutton2"
+                android:gravity="center"
+                android:textColor="#55bfe8"
+                android:textStyle="bold"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_weight="1.5"
+        android:layout_height="0dp">
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:layout_height="0dp">
+
+        <TextView
+            android:id="@+id/tv_login_signup"
+            android:layout_width="match_parent"
+            android:text="Don't have an account? Sign up!"
+            android:textSize="@dimen/p"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
 
 </LinearLayout>
