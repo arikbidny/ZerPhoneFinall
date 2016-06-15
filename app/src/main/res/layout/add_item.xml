@@ -19,13 +19,30 @@
         android:weightSum="1"
         android:id="@+id/linearLayout">
 
-        <ImageView
-            android:layout_width="93dp"
-            android:layout_height="70dp"
-            android:id="@+id/student_list_row_image"
-            android:src="@drawable/android"
-            android:layout_gravity="center"
-            android:layout_weight="0.11" />
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="93dp"
+                android:layout_height="70dp"
+                android:id="@+id/student_list_row_image"
+                android:src="@drawable/android"
+                android:layout_gravity="right"
+                android:layout_weight="0.11" />
+
+            <ImageView
+                android:layout_width="93dp"
+                android:layout_height="70dp"
+                android:id="@+id/student_list_row_camera"
+                android:src="@drawable/camera"
+                android:layout_gravity="right"
+                android:layout_weight="0.11" />
+
+
+
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -50,7 +67,8 @@
                 android:background="@drawable/login_text_box"
                 android:textColor="#ffffff"
                 android:id="@+id/item_list_row_edit_title"
-                android:textColorHint="#ffffff" />
+                android:textColorHint="#ffffff"
+                android:singleLine="true"/>
 
         </LinearLayout>
 
@@ -76,7 +94,8 @@
                 android:background="@drawable/login_text_box"
                 android:textColor="#ffffff"
                 android:id="@+id/item_list_row_edit_price"
-                android:textColorHint="#ffffff" />
+                android:textColorHint="#ffffff"
+                android:singleLine="true"/>
         </LinearLayout>
 
 
@@ -123,8 +142,10 @@
                 android:background="@drawable/login_text_box"
                 android:textColor="#ffffff"
                 android:id="@+id/item_list_row_edit_details"
-                android:textColorHint="#ffffff" />
+                android:textColorHint="#ffffff"
+                android:singleLine="true"/>
         </LinearLayout>
+
     </LinearLayout>
 
 
