@@ -23,4 +23,11 @@
         android:title="addNewItem"
         android:visible="true">
     </item>
+
+    <item
+        android:id="@+id/cart"
+        android:icon="@drawable/busket"
+        app:showAsAction="always"
+        android:title="CartActivity"
+        android:visible="true"></item>
 </menu>

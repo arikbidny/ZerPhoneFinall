@@ -18,6 +18,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -26,6 +27,7 @@ import java.util.List;
 public class Model {
     private final static Model instance = new Model();
     Context context;
+    private List<Item> cart = new LinkedList<Item>();
     static int position;
     static ModelFIreBase modelFIreBase;
     ModelCloudinary modelCloudinary;
@@ -151,5 +153,17 @@ public class Model {
 
     public static void remove(Item item){
         modelFIreBase.remove(item);
+    }
+
+    public void addToCart(Item item) {
+        cart.add(item);
+    }
+
+    public List<Item> getCart(){
+        return cart;
+    }
+
+    public void removeFromCart(int pos) {
+        cart.remove(pos);
     }
 }

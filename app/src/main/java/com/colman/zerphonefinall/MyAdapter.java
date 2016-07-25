@@ -38,66 +38,6 @@ public class MyAdapter extends BaseAdapter {
     public MyAdapter(Context context){
         inflater = LayoutInflater.from(context);
     }
-//
-//    public MyAdapter (Context context,int i) {
-//        Firebase.setAndroidContext(context);
-//        if (i==0) {
-//            myFireBaseData = new Firebase(data_path+"/single flower");
-//            //myFireBaseData.addChildEventListener(new itemChiledEventListner());
-//        }
-//        else if (i==1) {
-//            myFireBaseData = new Firebase(data_path+"/vase");
-//            //myFireBaseData.addChildEventListener(new itemChiledEventListner());
-//        }
-//        else if (i==2) {
-//            myFireBaseData = new Firebase(data_path+"/gift");
-//            //myFireBaseData.addChildEventListener(new itemChiledEventListner());
-//        }
-//        else if (i==3) {
-//            myFireBaseData = new Firebase(data_path+"/planet");
-//
-//        }
-//        myFireBaseData.addChildEventListener(new itemChiledEventListner());
-//        inflater = LayoutInflater.from(context);
-//    }
-//
-//    public void getAllItems(int positon,final LinkedList<Item> list){
-//        Firebase itemref;
-//        if (positon==0) {
-//            itemref = new Firebase(data_path+"/single flower");
-//        }
-//        else if (positon==1) {
-//            itemref = new Firebase(data_path+"/vase");
-//        }
-//        else if (positon==2) {
-//            itemref =new Firebase(data_path+"/gift");
-//        }
-//        else  {
-//            itemref =new Firebase(data_path+"/planet");
-//        }
-//        for (int i=0; i< items.size() ; i++ ) {
-//            list.add(items.get(i));
-//        }
-//
-//        itemref.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                /*for (DataSnapshot itemSnapshot : dataSnapshot.getChildren()) {
-//                    Item item = itemSnapshot.getValue(Item.class);
-//                    list.add(item);
-//                }*/
-//                for (int i=0; i< items.size() ; i++ ) {
-//                    list.add(items.get(i));
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(FirebaseError firebaseError) {
-//
-//            }
-//        });
-//    }
 
     @Override
     public int getCount() {
@@ -146,7 +86,7 @@ public class MyAdapter extends BaseAdapter {
             }
         });
         name.setText(item.getTitle());
-        price.setText(item.getPrice());
+        price.setText(item.getPrice()+"$");
 
         return v;
     }
