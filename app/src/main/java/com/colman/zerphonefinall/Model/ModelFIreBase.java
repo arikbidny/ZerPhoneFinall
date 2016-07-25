@@ -44,6 +44,7 @@ public class ModelFIreBase {
 
     }
 
+
     public void getAllItemsAsync(final Model.getItemListener listener, int positon){
         Firebase itemref;
         if (positon==0) {
@@ -58,7 +59,6 @@ public class ModelFIreBase {
         else  {
             itemref =new Firebase(data_path+"/planet");
         }
-
 
         itemref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -85,15 +85,17 @@ public class ModelFIreBase {
         myFireBaseData.push().setValue(item);
     }
 
-    public void update(Item item,String title, String price,String details, String cat) {
+    public void update(Item item,String title,String image, String price,String details, String cat) {
         item.setTitle(title);
         item.setPrice(price);
         item.setDetails(details);
+        item.setImage(image);
         String temp = item.getCategory();
         if (!item.getCategory().toLowerCase().equals(cat.toLowerCase())) {
-            item.setCategory(cat);
             remove(item);
+            item.setCategory(cat);
             add(item);
+            return;
         }
 
         myFireBaseData.child(item.getKey()).setValue(item);
@@ -114,7 +116,7 @@ public class ModelFIreBase {
             String[] split = myFireBaseData.toString().split("/");
             String cat = split[3];
             Item item = dataSnapshot.getValue(Item.class);
-            items.add(new Item(item.getTitle(), R.drawable.lailot_levanim, item.getPrice(), item.getdetails(), cat ,dataSnapshot.getKey()));
+            items.add(new Item(item.getTitle(), item.getImage(), item.getPrice(), item.getdetails(), cat ,dataSnapshot.getKey()));
             //notifyDataSetChanged();
 
         }

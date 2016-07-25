@@ -22,7 +22,7 @@ public class ModelCloudinary {
 
     public ModelCloudinary(){
         // our url CLOUDINARY_URL=cloudinary://213864789578317:BMij5gRVv4MvYBXTOh_co6Nufj4@dn98nlqsx
-        cloudinary = new Cloudinary("cloudinary://213864789578317:BMij5gRVv4MvYBXTOh_co6Nufj4@dn98nlqsx"); // replace with our url
+        cloudinary = new Cloudinary("cloudinary://755232371771954:uddv-1VWjnTzFJD442MwQAxIwqI@sagikri"); // replace with our url
     }
 
     public void saveImage(final Bitmap imageBitmap, final String imageName) {

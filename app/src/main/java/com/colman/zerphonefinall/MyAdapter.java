@@ -1,14 +1,17 @@
 package com.colman.zerphonefinall;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.colman.zerphonefinall.Model.Item;
+import com.colman.zerphonefinall.Model.Model;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -108,13 +111,13 @@ public class MyAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return items.get(position).getImage();
+        return position;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View v = convertView;
-        ImageView picture;
+        final ImageView picture;
         TextView name;
         TextView price;
 
@@ -131,7 +134,17 @@ public class MyAdapter extends BaseAdapter {
 
         Item item = (Item) getItem(position);
 
-        picture.setImageResource(item.getImage());
+        final ProgressBar progressBar = (ProgressBar) v.findViewById(R.id.grid_progressBar);
+        progressBar.setVisibility(View.VISIBLE);
+        Model.getInstance(position).loadImage(item.getImage(), new Model.LoadImageListener() {
+            @Override
+            public void onResult(Bitmap imageBitmap) {
+                if (imageBitmap != null) {
+                    picture.setImageBitmap(imageBitmap);
+                    progressBar.setVisibility(View.GONE);
+                }
+            }
+        });
         name.setText(item.getTitle());
         price.setText(item.getPrice());
 

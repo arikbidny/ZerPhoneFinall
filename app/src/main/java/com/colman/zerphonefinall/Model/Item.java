@@ -9,7 +9,7 @@ public class Item {
 
 
     private String title;
-    private int image;
+    private String image;
     private String price;
     private String details;
     private String category;
@@ -19,7 +19,7 @@ public class Item {
 
     public Item() {}//empty constructor for firebase
 
-    public Item(String name,int drawableId,String price,String dt,String cat) {
+    public Item(String name,String drawableId,String price,String dt,String cat) {
         this.title = name;
         this.image = drawableId;
         this.price = price;
@@ -27,7 +27,7 @@ public class Item {
         this.category = cat;
     }
 
-    public Item(String name,int drawableId,String price,String dt,String cat,String key) {
+    public Item(String name,String drawableId,String price,String dt,String cat,String key) {
         this.title = name;
         this.image = drawableId;
         this.price = price;
@@ -42,7 +42,7 @@ public class Item {
         return this.title;
     }
 
-    public int getImage() {
+    public String getImage() {
         return this.image;
     }
 
@@ -64,7 +64,7 @@ public class Item {
         this.title=name;
     }
 
-    public void setImage(int image){
+    public void setImage(String image){
         this.image=image;
     }
 

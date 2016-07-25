@@ -31,6 +31,12 @@
                 android:layout_gravity="right"
                 android:layout_weight="0.11" />
 
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/add_progressBar"
+                android:visibility="gone"/>
+
             <ImageView
                 android:layout_width="93dp"
                 android:layout_height="70dp"
@@ -143,12 +149,26 @@
                 android:textColor="#ffffff"
                 android:id="@+id/item_list_row_edit_details"
                 android:textColorHint="#ffffff"
-                android:singleLine="true"/>
+                android:singleLine="false"/>
         </LinearLayout>
 
     </LinearLayout>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:background="@drawable/send_btn"
+        android:text="cancel"
+        android:id="@+id/cancel_btn"
+        android:layout_gravity="left|bottom" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:background="@drawable/send_btn"
+        android:text="Ok"
+        android:id="@+id/ok_button"
+        android:layout_gravity="right|bottom" />
 
 
 </FrameLayout>
