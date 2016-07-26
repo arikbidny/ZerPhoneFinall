@@ -13,27 +13,30 @@ public class Item {
     private String price;
     private String details;
     private String category;
+    private String lastUpadte;
     @JsonIgnore
     private  String key;
 
 
     public Item() {}//empty constructor for firebase
 
-    public Item(String name,String drawableId,String price,String dt,String cat) {
+    public Item(String name,String drawableId,String price,String dt,String cat,String date) {
         this.title = name;
         this.image = drawableId;
         this.price = price;
         this.details = dt;
         this.category = cat;
+        this.lastUpadte = date;
     }
 
-    public Item(String name,String drawableId,String price,String dt,String cat,String key) {
+    public Item(String name,String drawableId,String price,String dt,String cat,String key, String date) {
         this.title = name;
         this.image = drawableId;
         this.price = price;
         this.details = dt;
         this.category = cat;
         this.key = key;
+        this.lastUpadte = date;
     }
 
     public String getKey(){return this.key;}
@@ -79,4 +82,8 @@ public class Item {
     public void setCategory(String category) {
         this.category = category;
     }
+
+    public void setLastUpadte(String date) {this.lastUpadte = date;}
+
+    public String getLastUpadte() {return this.lastUpadte;}
 }

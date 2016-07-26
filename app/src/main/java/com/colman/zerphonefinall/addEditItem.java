@@ -75,6 +75,7 @@ public class addEditItem extends AppCompatActivity {
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String date = String.valueOf(System.currentTimeMillis());
                 if (title.getText().toString().length() == 0 || //check if all fields have been field
                         price.getText().toString().length() == 0 ||
                         detials.getText().toString().length() == 0)
@@ -87,13 +88,13 @@ public class addEditItem extends AppCompatActivity {
                     String imageName = newTitle + timeStamp +  ".jpg";
                     String newCat = dropDown.getSelectedItem().toString();
                     if (newItem == null && imageBitmap!=null) { //check if a photo has been given
-                        newItem = new Item(newTitle, imageName , newPrice, newDetials, newCat);
+                        newItem = new Item(newTitle, imageName , newPrice, newDetials, newCat,date);
 
                         Model.getInstance(position).add(newItem);
                         Model.getInstance(position).saveImage(imageBitmap, imageName);
                         finish();
                     } else if (newItem!=null){
-                        Model.getInstance(position).update(newItem, newTitle, imageName, newPrice, newDetials, newCat);
+                        Model.getInstance(position).update(newItem, newTitle, imageName, newPrice, newDetials, newCat,date);
                         if (imageBitmap!=null) {
                             Model.getInstance(position).saveImage(imageBitmap, imageName);
                         } else if (imageBitmap==null){

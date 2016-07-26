@@ -85,11 +85,12 @@ public class ModelFIreBase {
         myFireBaseData.push().setValue(item);
     }
 
-    public void update(Item item,String title,String image, String price,String details, String cat) {
+    public void update(Item item,String title,String image, String price,String details, String cat,String date) {
         item.setTitle(title);
         item.setPrice(price);
         item.setDetails(details);
         item.setImage(image);
+        item.setLastUpadte(date);
         String temp = item.getCategory();
         if (!item.getCategory().toLowerCase().equals(cat.toLowerCase())) {
             remove(item);

@@ -147,8 +147,8 @@ public class Model {
         }
     }
 
-    public void update(Item item,String title,String imageName, String price,String details, String cat){
-        modelFIreBase.update(item, title, imageName, price, details, cat);
+    public void update(Item item,String title,String imageName, String price,String details, String cat,String date){
+        modelFIreBase.update(item, title, imageName, price, details, cat,date);
     }
 
     public static void remove(Item item){

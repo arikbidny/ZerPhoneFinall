@@ -12,6 +12,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.colman.zerphonefinall.Model.Constants;
+import com.colman.zerphonefinall.Model.Model;
+import com.colman.zerphonefinall.Model.ModelFIreBase;
+import com.colman.zerphonefinall.Model.User;
+import com.firebase.client.AuthData;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 
@@ -21,6 +25,8 @@ public class SignUpActivity extends ActionBarActivity {
     protected EditText password;
     protected TextView login;
     protected Button signup;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,9 +76,24 @@ public class SignUpActivity extends ActionBarActivity {
                 } else {
 
                     // signup
+                    final String date = String.valueOf(System.currentTimeMillis());
+                    final String finalEmailString = emailString;
+                    final String finalPasswordString = passwordString;
                     ref.createUser(emailString, passwordString, new Firebase.ResultHandler() {
                         @Override
                         public void onSuccess() {
+                            ref.authWithPassword(finalEmailString, finalPasswordString, new Firebase.AuthResultHandler() {
+                                @Override
+                                public void onAuthenticated(AuthData authData) {
+                                    User user = new User(finalEmailString,date);
+                                    ref.child("users").child(authData.getUid()).setValue(user);
+                                }
+
+                                @Override
+                                public void onAuthenticationError(FirebaseError firebaseError) {
+
+                                }
+                            });
                             AlertDialog.Builder builder = new AlertDialog.Builder(SignUpActivity.this);
                             builder.setMessage(R.string.signup_success)
                                     .setPositiveButton(R.string.login_button_label, new DialogInterface.OnClickListener() {
