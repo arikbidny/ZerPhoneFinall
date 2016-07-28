@@ -48,29 +48,28 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     }
 
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        context = getApplicationContext();
-
-        final ActionBar actionBar = getSupportActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-
-        sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-
-        viewPager = (ViewPager) findViewById(R.id.pager);
-        viewPager.setAdapter(sectionsPagerAdapter);
-
-        viewPager.setCurrentItem(0);
-
-        viewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-            @Override
-            public void onPageSelected(int position) {
-                actionBar.setSelectedNavigationItem(position);
-            }
-        });
-
-    }
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        context = getApplicationContext();
+//
+//        final ActionBar actionBar = getSupportActionBar();
+//        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+//
+//        sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+//
+//        viewPager = (ViewPager) findViewById(R.id.pager);
+//        viewPager.setAdapter(sectionsPagerAdapter);
+//
+//
+//        viewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+//            @Override
+//            public void onPageSelected(int position) {
+//                actionBar.setSelectedNavigationItem(position);
+//            }
+//        });
+//
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -255,6 +254,12 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                 });
             }
             return view;
+        }
+
+        @Override
+        public void onResume() {
+            super.onResume();
+            loadItemsData();
         }
 
         private void loadItemsData() {

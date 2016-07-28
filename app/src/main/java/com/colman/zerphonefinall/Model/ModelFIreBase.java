@@ -1,6 +1,7 @@
 package com.colman.zerphonefinall.Model;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.colman.zerphonefinall.R;
 import com.firebase.client.ChildEventListener;
@@ -19,6 +20,13 @@ import java.util.List;
 public class ModelFIreBase {
     Firebase myFireBaseData;
     public final String data_path = Constants.FIREBASE_URL;
+    private static  final String TAG = "MyActivity";
+
+    public interface UpdateDateCompletionListener
+    {
+        public void onResult(String updateDate);
+        public void onError(String error);
+    }
 
     private List<Item> items = new ArrayList<Item>();
 
@@ -79,13 +87,40 @@ public class ModelFIreBase {
         });
     }
 
+    public void getLastUpdateDate(String tableName,final UpdateDateCompletionListener updateDateCompletionListener){
+        Firebase ref = new Firebase(data_path + "/" + Constants.LastUpdateTable);
+        Log.v(TAG,"table name=" + tableName);
+        ref.child(tableName).child("date").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String date = dataSnapshot.getValue(String.class);
+                if (date == null || date.equals("")) date = "1";
+                updateDateCompletionListener.onResult(date);
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                updateDateCompletionListener.onError("");
+            }
+        });
+    }
+
 
     public void add(Item item) {
         myFireBaseData = new Firebase(data_path+item.getCategory().toLowerCase());
         myFireBaseData.push().setValue(item);
+        Firebase ref = new Firebase(data_path + "/" + Constants.LastUpdateTable);
+        String tableName = checkCat(item);
+        lastUpdate lastUpdate = new lastUpdate(item.getLastUpadte(),tableName);
+        ref.child(tableName).setValue(lastUpdate);
     }
 
     public void update(Item item,String title,String image, String price,String details, String cat,String date) {
+        Firebase ref = new Firebase(data_path + "/" + Constants.LastUpdateTable);
+        String tableName = checkCat(item);
+        lastUpdate lastUpdate = new lastUpdate(String.valueOf(System.currentTimeMillis()),tableName);
+        ref.child(tableName).setValue(lastUpdate);
+
         item.setTitle(title);
         item.setPrice(price);
         item.setDetails(details);
@@ -99,13 +134,42 @@ public class ModelFIreBase {
             return;
         }
 
-        myFireBaseData.child(item.getKey()).setValue(item);
+        //myFireBaseData.child(item.getKey()).setValue(item);
+        Firebase url = new Firebase(data_path + "/" + item.getCategory().toLowerCase());
+        url.child(item.getKey()).setValue(item);
+
+
     }
 
     public void remove(Item item){
         Firebase firebase = new Firebase(data_path+item.getCategory().toLowerCase());
         String key = item.getKey();
         firebase.child(item.getKey()).removeValue();
+        Firebase ref = new Firebase(data_path + "/" + Constants.LastUpdateTable);
+        String tableName = checkCat(item);
+        lastUpdate lastUpdate = new lastUpdate(String.valueOf(System.currentTimeMillis()),tableName);
+        ref.child(tableName).setValue(lastUpdate);
+    }
+
+    public String checkCat(Item item){
+        switch (item.getCategory().toLowerCase()){
+            case "single flower":
+            {
+                return Constants.SingleFlowerTable;
+            }
+            case "vase":
+            {
+                return Constants.VaseTable;
+            }
+            case "gift":
+            {
+                return Constants.giftTable;
+            }
+            default:
+            {
+                return Constants.PlanetTable;
+            }
+        }
     }
 
 

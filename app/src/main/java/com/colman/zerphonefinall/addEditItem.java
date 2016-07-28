@@ -90,16 +90,16 @@ public class addEditItem extends AppCompatActivity {
                     if (newItem == null && imageBitmap!=null) { //check if a photo has been given
                         newItem = new Item(newTitle, imageName , newPrice, newDetials, newCat,date);
 
-                        Model.getInstance(position).add(newItem);
-                        Model.getInstance(position).saveImage(imageBitmap, imageName);
+                        Model.getInstance(positionTab).add(newItem);
+                        Model.getInstance(positionTab).saveImage(imageBitmap, imageName);
                         finish();
                     } else if (newItem!=null){
-                        Model.getInstance(position).update(newItem, newTitle, imageName, newPrice, newDetials, newCat,date);
+                        Model.getInstance(positionTab).update(newItem, newTitle, imageName, newPrice, newDetials, newCat,date);
                         if (imageBitmap!=null) {
-                            Model.getInstance(position).saveImage(imageBitmap, imageName);
+                            Model.getInstance(positionTab).saveImage(imageBitmap, imageName);
                         } else if (imageBitmap==null){
                             Bitmap bitmap = ((BitmapDrawable)image.getDrawable()).getBitmap();
-                            Model.getInstance(position).saveImage(bitmap,imageName);
+                            Model.getInstance(positionTab).saveImage(bitmap,imageName);
                         }
                         finish();
                     }

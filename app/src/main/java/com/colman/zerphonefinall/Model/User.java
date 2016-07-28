@@ -5,11 +5,29 @@ package com.colman.zerphonefinall.Model;
  */
 public class User{
     private String email;
+    private String password;
     private String lastUpdate;
+
+
 
     public User(String mail,String date) {
         this.email = mail;
         this.lastUpdate = date;
+    }
+
+    public User(String mail,String password, String lastUpdate){
+        this.email = mail;
+        this.password = password;
+        this.lastUpdate = lastUpdate;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPassword() {
+
+        return password;
     }
 
     public String getEmail() {

@@ -10,6 +10,7 @@ import android.os.Environment;
 import android.util.Log;
 
 import com.colman.zerphonefinall.MainActivity;
+import com.colman.zerphonefinall.Model.SQL.ModelSql;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -31,11 +32,13 @@ public class Model {
     static int position;
     static ModelFIreBase modelFIreBase;
     ModelCloudinary modelCloudinary;
+    static ModelSql modelSql;
 
     private Model(){
         context = MainActivity.getAppContext();
         modelFIreBase = new ModelFIreBase(context,position);
         modelCloudinary = new ModelCloudinary();
+        modelSql = new ModelSql();
     }
 
     public static void setPosition(int i){
@@ -52,13 +55,207 @@ public class Model {
         public void onCancel();
     }
 
-    public void getAllItemsASynch(int position, getItemListener listener) {
-        modelFIreBase.getAllItemsAsync(listener, position);
+    public void getAllItemsASynch(final int position, final getItemListener listener) {
+//        modelFIreBase.getAllItemsAsync(listener, position);
+        String cat="";
+        switch (position) {
+            case 0:
+            {
+                cat= "single flower";
+                modelFIreBase.getLastUpdateDate(Constants.SingleFlowerTable, new ModelFIreBase.UpdateDateCompletionListener() {
+                    @Override
+                    public void onResult(final String updateDate) {
+                        String sqlUpdated = modelSql.getLastUpdate(Constants.SingleFlowerTable);
+                        long temp;
+                        if (sqlUpdated!=null) {temp = Long.parseLong(sqlUpdated);}
+                        else temp = 0;
+                        final long sql=temp;
+                        if (-sql >= Long.parseLong(updateDate)){
+                            LinkedList<Item> list = modelSql.gettAllSingleFlowers();
+                            listener.onResult(list);
+                        }
+                        else {
+                            modelFIreBase.getAllItemsAsync(new getItemListener() {
+                                @Override
+                                public void onResult(List<Item> items) {
+                                    for (Item item: items){
+                                        if(Long.parseLong(item.getLastUpadte()) >= sql){
+                                        //Write updates to sql
+                                            modelSql.delSingleFlower(item);
+                                            modelSql.addSingleFlower(item);
+                                        }
+
+                                    }
+                                    //Update sql last update date for the table
+                                    //After updates were written -> call to the listener
+                                    modelSql.setLastUpdate(Constants.SingleFlowerTable,updateDate);
+                                    listener.onResult(items);
+                                }
+
+                                @Override
+                                public void onCancel() {
+
+                                }
+                            }, position);
+
+                        }
+                    }
+                    @Override
+                    public void onError(String error) {
+
+                    }
+                });
+                break;
+            }
+            case 1:
+            {
+                cat = "vase";
+                modelFIreBase.getLastUpdateDate(Constants.VaseTable, new ModelFIreBase.UpdateDateCompletionListener() {
+                    @Override
+                    public void onResult(final String updateDate) {
+                        String sqlUpdated = modelSql.getLastUpdate(Constants.VaseTable);
+                        long temp;
+                        if (sqlUpdated!=null) {temp = Long.parseLong(sqlUpdated);}
+                        else temp = 0;
+                        final long sql=temp;
+                        if (sql >= Long.parseLong(updateDate)){
+                            LinkedList<Item> list = modelSql.gettAllVases();
+                            listener.onResult(list);
+                        }
+                        else {
+                            modelFIreBase.getAllItemsAsync(new getItemListener() {
+                                @Override
+                                public void onResult(List<Item> items) {
+                                    for (Item item: items){
+                                        if(Long.parseLong(item.getLastUpadte()) >= sql){
+                                            //Write updates to sql
+                                            modelSql.delVase(item);
+                                            modelSql.addVase(item);
+                                        }
+
+                                    }
+                                    //Update sql last update date for the table
+                                    //After updates were written -> call to the listener
+                                    modelSql.setLastUpdate(Constants.VaseTable,updateDate);
+                                    listener.onResult(items);
+                                }
+
+                                @Override
+                                public void onCancel() {
+
+                                }
+                            }, position);
+                        }
+                    }
+                    @Override
+                    public void onError(String error) {
+
+                    }
+                });
+                break;
+            }
+            case 2:
+            {
+                cat = "gift";
+                modelFIreBase.getLastUpdateDate(Constants.giftTable, new ModelFIreBase.UpdateDateCompletionListener() {
+                    @Override
+                    public void onResult(final String updateDate) {
+                        String sqlUpdated = modelSql.getLastUpdate(Constants.giftTable);
+                        long temp;
+                        if (sqlUpdated!=null) {temp = Long.parseLong(sqlUpdated);}
+                        else temp = 0;
+                        final long sql=temp;
+                        if (sql >= Long.parseLong(updateDate)){
+                            LinkedList<Item> list = modelSql.gettAllGifts();
+                            listener.onResult(list);
+                        }
+                        else {
+                            modelFIreBase.getAllItemsAsync(new getItemListener() {
+                                @Override
+                                public void onResult(List<Item> items) {
+                                    for (Item item: items){
+                                        if(Long.parseLong(item.getLastUpadte()) >= sql){
+                                            //Write updates to sql
+                                            modelSql.delGift(item);
+                                            modelSql.addGift(item);
+                                        }
+
+                                    }
+                                    //Update sql last update date for the table
+                                    //After updates were written -> call to the listener
+                                    modelSql.setLastUpdate(Constants.giftTable,updateDate);
+                                    listener.onResult(items);
+                                }
+
+                                @Override
+                                public void onCancel() {
+
+                                }
+                            }, position);
+                        }
+                    }
+                    @Override
+                    public void onError(String error) {
+
+                    }
+                });
+                break;
+            }
+            case 3:
+            {
+                cat = "planet";
+                modelFIreBase.getLastUpdateDate(Constants.PlanetTable, new ModelFIreBase.UpdateDateCompletionListener() {
+                    @Override
+                    public void onResult(final String updateDate) {
+                        String sqlUpdated = modelSql.getLastUpdate(Constants.PlanetTable);
+                        long temp;
+                        if (sqlUpdated!=null) {temp = Long.parseLong(sqlUpdated);}
+                        else temp = 0;
+                        final long sql=temp;
+                        if (sql == Long.parseLong(updateDate)){
+                            LinkedList<Item> list = modelSql.gettAllPlanets();
+                            listener.onResult(list);
+                        }
+                        else {
+                            modelFIreBase.getAllItemsAsync(new getItemListener() {
+                                @Override
+                                public void onResult(List<Item> items) {
+                                    for (Item item: items){
+                                        if(Long.parseLong(item.getLastUpadte()) >= sql){
+                                            //Write updates to sql
+                                            modelSql.delPlanet(item);
+                                            modelSql.addPlanet(item);
+                                        }
+
+                                    }
+                                    //Update sql last update date for the table
+                                    //After updates were written -> call to the listener
+                                    modelSql.setLastUpdate(Constants.PlanetTable,updateDate);
+                                    listener.onResult(items);
+                                }
+
+                                @Override
+                                public void onCancel() {
+
+                                }
+                            }, position);
+                        }
+                    }
+                    @Override
+                    public void onError(String error) {
+
+                    }
+                });
+                break;
+            }
+        }
+
     }
 
 
     public void add(Item item){
         modelFIreBase.add(item);
+        String cat = item.getCategory().toLowerCase();
     }
 
     public void saveImage (final Bitmap imageBitmap,final String imageName){
@@ -148,11 +345,73 @@ public class Model {
     }
 
     public void update(Item item,String title,String imageName, String price,String details, String cat,String date){
-        modelFIreBase.update(item, title, imageName, price, details, cat,date);
+        modelFIreBase.update(item, title, imageName, price, details, cat, date);
     }
 
     public static void remove(Item item){
         modelFIreBase.remove(item);
+        switch (item.getCategory().toLowerCase()) {
+            case "single flower":
+            {
+                modelSql.delSingleFlower(item);
+                modelFIreBase.getLastUpdateDate(Constants.SingleFlowerTable, new ModelFIreBase.UpdateDateCompletionListener() {
+                    @Override
+                    public void onResult(String updateDate) {
+                        modelSql.setLastUpdate(Constants.SingleFlowerTable,updateDate);
+                    }
+
+                    @Override
+                    public void onError(String error) {
+
+                    }
+                });
+            }
+            case "vase":
+            {
+                modelSql.delVase(item);
+                modelFIreBase.getLastUpdateDate(Constants.VaseTable, new ModelFIreBase.UpdateDateCompletionListener() {
+                    @Override
+                    public void onResult(String updateDate) {
+                        modelSql.setLastUpdate(Constants.VaseTable,updateDate);
+                    }
+
+                    @Override
+                    public void onError(String error) {
+
+                    }
+                });
+            }
+            case "gift":
+            {
+                modelSql.delGift(item);
+                modelFIreBase.getLastUpdateDate(Constants.giftTable, new ModelFIreBase.UpdateDateCompletionListener() {
+                    @Override
+                    public void onResult(String updateDate) {
+                        modelSql.setLastUpdate(Constants.giftTable,updateDate);
+                    }
+
+                    @Override
+                    public void onError(String error) {
+
+                    }
+                });
+            }
+            case "planet":
+            {
+                modelSql.delPlanet(item);
+                modelFIreBase.getLastUpdateDate(Constants.PlanetTable, new ModelFIreBase.UpdateDateCompletionListener() {
+                    @Override
+                    public void onResult(String updateDate) {
+                        modelSql.setLastUpdate(Constants.PlanetTable,updateDate);
+                    }
+
+                    @Override
+                    public void onError(String error) {
+
+                    }
+                });
+            }
+        }
     }
 
     public void addToCart(Item item) {
@@ -166,4 +425,5 @@ public class Model {
     public void removeFromCart(int pos) {
         cart.remove(pos);
     }
+
 }
