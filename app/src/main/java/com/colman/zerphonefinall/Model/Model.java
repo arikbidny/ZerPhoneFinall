@@ -70,7 +70,7 @@ public class Model {
                         if (sqlUpdated!=null) {temp = Long.parseLong(sqlUpdated);}
                         else temp = 0;
                         final long sql=temp;
-                        if (-sql >= Long.parseLong(updateDate)){
+                        if (sql >= Long.parseLong(updateDate)){
                             LinkedList<Item> list = modelSql.gettAllSingleFlowers();
                             listener.onResult(list);
                         }
@@ -94,7 +94,8 @@ public class Model {
 
                                 @Override
                                 public void onCancel() {
-
+                                    LinkedList<Item> list = modelSql.gettAllSingleFlowers();
+                                    listener.onResult(list);
                                 }
                             }, position);
 
@@ -102,7 +103,8 @@ public class Model {
                     }
                     @Override
                     public void onError(String error) {
-
+                        LinkedList<Item> list = modelSql.gettAllSingleFlowers();
+                        listener.onResult(list);
                     }
                 });
                 break;
@@ -142,14 +144,16 @@ public class Model {
 
                                 @Override
                                 public void onCancel() {
-
+                                    LinkedList<Item> list = modelSql.gettAllVases();
+                                    listener.onResult(list);
                                 }
                             }, position);
                         }
                     }
                     @Override
                     public void onError(String error) {
-
+                        LinkedList<Item> list = modelSql.gettAllVases();
+                        listener.onResult(list);
                     }
                 });
                 break;
@@ -189,14 +193,16 @@ public class Model {
 
                                 @Override
                                 public void onCancel() {
-
+                                    LinkedList<Item> list = modelSql.gettAllGifts();
+                                    listener.onResult(list);
                                 }
                             }, position);
                         }
                     }
                     @Override
                     public void onError(String error) {
-
+                        LinkedList<Item> list = modelSql.gettAllGifts();
+                        listener.onResult(list);
                     }
                 });
                 break;
@@ -236,14 +242,16 @@ public class Model {
 
                                 @Override
                                 public void onCancel() {
-
+                                    LinkedList<Item> list = modelSql.gettAllPlanets();
+                                    listener.onResult(list);
                                 }
                             }, position);
                         }
                     }
                     @Override
                     public void onError(String error) {
-
+                        LinkedList<Item> list = modelSql.gettAllPlanets();
+                        listener.onResult(list);
                     }
                 });
                 break;

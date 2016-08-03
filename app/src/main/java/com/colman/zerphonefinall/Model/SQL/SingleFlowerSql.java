@@ -16,7 +16,7 @@ import java.util.LinkedList;
  */
 public class SingleFlowerSql {
     private static final String SINGLEFLOWER_TABLE = Constants.SingleFlowerTable;
-    private static final String CATEGORY = "single flower";
+    private static final String CATEGORY = "single";
     private static final String DETAILS = "details";
     private static final String IMAGE = "image";
     private static final String PRICE = "price";
@@ -44,6 +44,7 @@ public class SingleFlowerSql {
             flag=false;
         }
         if (flag) {
+            String cat = item.getCategory().split(" ")[0];
             ContentValues values = new ContentValues();
             values.put(CATEGORY,item.getCategory());
             values.put(DETAILS,item.getdetails());

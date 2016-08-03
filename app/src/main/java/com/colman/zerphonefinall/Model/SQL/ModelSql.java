@@ -19,7 +19,7 @@ import java.util.LinkedList;
  */
 public class ModelSql {
 
-    private final static int VERSION = 8;
+    private final static int VERSION = 13;
     MyDBHelper dbHelper;
 
      public ModelSql() {dbHelper = new MyDBHelper(MainActivity.getAppContext());}
