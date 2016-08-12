@@ -146,6 +146,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             case R.id.logout:{
                 Intent intent = new Intent(MainActivity.this,LoginActivity.class);
                 Model.getInstance(0).logout();
+                Model.getInstance(0).removeAllCart();
                 startActivity(intent);
                 break;
             }

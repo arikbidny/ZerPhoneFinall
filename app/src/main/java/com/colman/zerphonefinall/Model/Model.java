@@ -436,4 +436,10 @@ public class Model {
         cart.remove(pos);
     }
 
+    public void removeAllCart(){
+        for (int i=0; i<=cart.size() ; i++){
+            cart.remove(i);
+        }
+    }
+
 }
