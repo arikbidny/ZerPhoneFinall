@@ -151,6 +151,10 @@ public class ModelFIreBase {
         ref.child(tableName).setValue(lastUpdate);
     }
 
+    public void logout(){
+        myFireBaseData.unauth();
+    }
+
     public String checkCat(Item item){
         switch (item.getCategory().toLowerCase()){
             case "single flower":

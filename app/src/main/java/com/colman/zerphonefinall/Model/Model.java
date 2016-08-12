@@ -422,6 +422,8 @@ public class Model {
         }
     }
 
+    public void logout(){modelFIreBase.logout();}
+
     public void addToCart(Item item) {
         cart.add(item);
     }

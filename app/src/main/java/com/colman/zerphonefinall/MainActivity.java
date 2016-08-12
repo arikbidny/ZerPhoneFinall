@@ -111,6 +111,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         MenuItem item = menu.findItem(R.id.addNewItem);
         MenuItem maps = menu.findItem(R.id.maps);
         MenuItem cart = menu.findItem(R.id.cart);
+        MenuItem logout = menu.findItem(R.id.logout);
         item.setIcon(R.drawable.business_users_add);
         maps.setIcon(R.drawable.mapsicon);
         cart.setIcon(R.drawable.busket);
@@ -139,6 +140,12 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             }
             case R.id.cart:{
                 Intent intent = new Intent(MainActivity.this, CartActivity.class);
+                startActivity(intent);
+                break;
+            }
+            case R.id.logout:{
+                Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+                Model.getInstance(0).logout();
                 startActivity(intent);
                 break;
             }
