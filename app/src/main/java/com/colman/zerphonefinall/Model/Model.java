@@ -78,13 +78,13 @@ public class Model {
                             modelFIreBase.getAllItemsAsync(new getItemListener() {
                                 @Override
                                 public void onResult(List<Item> items) {
+                                    LinkedList<Item> sqlItems = modelSql.gettAllSingleFlowers();
+                                    for (Item sqlitem: sqlItems){
+                                        modelSql.delSingleFlower(sqlitem);
+                                    }
                                     for (Item item: items){
-                                        if(Long.parseLong(item.getLastUpadte()) >= sql){
                                         //Write updates to sql
-                                            modelSql.delSingleFlower(item);
                                             modelSql.addSingleFlower(item);
-                                        }
-
                                     }
                                     //Update sql last update date for the table
                                     //After updates were written -> call to the listener
@@ -128,13 +128,12 @@ public class Model {
                             modelFIreBase.getAllItemsAsync(new getItemListener() {
                                 @Override
                                 public void onResult(List<Item> items) {
+                                    LinkedList<Item> sqlItems = modelSql.gettAllVases();
+                                    for (Item sqlitem: sqlItems) {
+                                        modelSql.delVase(sqlitem);
+                                    }
                                     for (Item item: items){
-                                        if(Long.parseLong(item.getLastUpadte()) >= sql){
-                                            //Write updates to sql
-                                            modelSql.delVase(item);
                                             modelSql.addVase(item);
-                                        }
-
                                     }
                                     //Update sql last update date for the table
                                     //After updates were written -> call to the listener
@@ -177,13 +176,12 @@ public class Model {
                             modelFIreBase.getAllItemsAsync(new getItemListener() {
                                 @Override
                                 public void onResult(List<Item> items) {
+                                    LinkedList<Item> sqlItems = modelSql.gettAllGifts();
+                                    for (Item sqlitem: sqlItems) {
+                                        modelSql.delGift(sqlitem);
+                                    }
                                     for (Item item: items){
-                                        if(Long.parseLong(item.getLastUpadte()) >= sql){
-                                            //Write updates to sql
-                                            modelSql.delGift(item);
                                             modelSql.addGift(item);
-                                        }
-
                                     }
                                     //Update sql last update date for the table
                                     //After updates were written -> call to the listener
@@ -226,13 +224,12 @@ public class Model {
                             modelFIreBase.getAllItemsAsync(new getItemListener() {
                                 @Override
                                 public void onResult(List<Item> items) {
+                                    LinkedList<Item> sqlItems = modelSql.gettAllPlanets();
+                                    for (Item sqlitem: sqlItems) {
+                                        modelSql.delPlanet(sqlitem);
+                                    }
                                     for (Item item: items){
-                                        if(Long.parseLong(item.getLastUpadte()) >= sql){
-                                            //Write updates to sql
-                                            modelSql.delPlanet(item);
                                             modelSql.addPlanet(item);
-                                        }
-
                                     }
                                     //Update sql last update date for the table
                                     //After updates were written -> call to the listener
